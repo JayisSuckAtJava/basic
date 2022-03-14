@@ -22,15 +22,23 @@ class BasicApplicationTests {
 	@Autowired
 	SunbyulDao sunbyulDao;
 
+	// Junit 은 SpringBootTest Class 안에 있는 Test Method를 단독 실행함. (클래스를 선택하면 안에 메소드 전부 실행.)
+	// 클래스(파일) 명칭은 주로 테스트할 객체의 이름을 기주능로 만드는 편, method는 해당 객체의 메소드 들로 구성
+	// 예:) SunbyulDaoTest 런식. - @Test void method(){} 런식
+	// + AutoWired로 모든 Bean 대려올수 있음.
+
 	@Test
 	void contextLoads() {
 		int startRow = 15000;
 		System.out.println();
 		List<Map<String, Object>> result = sunbyulDao.sel(startRow);
-		System.out.println("1번째 셀렉트문 실행 결과 [  "+result+"  ]  ");
+		System.out.println("1번째 셀렉트문 실행 결과 [  "+result+"  ]  ");	
+	}
+
+	@Test
+	void sunbyulSelect(){
 		List<Map<String, Object>> rereuslt = sunbyulDao.sel2();
 		System.out.println("2번째 셀렉트문 실행 결과  [  "+rereuslt+"  ]  ");
-		
 	}
 
 }
