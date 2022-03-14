@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.example.basic.dao.DemoDao;
 import com.example.basic.dao.SunbyulDao;
+import com.example.basic.mapper.DemoMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class DBController {
 
     @Autowired
     SunbyulDao sunbyulDao;
+
+    @Autowired
+    DemoMapper demoMapper;
 
     @GetMapping("/jdbc/demo")
     public List<Map<String, Object>> jdbcDemo() {
@@ -61,4 +65,21 @@ public class DBController {
     }
 
     // j unit - 
+
+    @GetMapping("/mybatis/demo")
+    public List<Map<String, Object>> mybatisDemo() {
+        return demoMapper.select();
+    }
+
+
+    @GetMapping("/mybatis/demo2")
+    public String mybaitsDemoInsert(@RequestParam("seq") int seq, @RequestParam("user") String user){
+        Map<String , Object > map = new HashMap<>();
+        map.put("seq", seq);
+        map.put("user", user);
+        int result = demoMapper.insert(map);
+        if(result!=0){return "Done";}
+        if(result==0){return "Fail";}
+        return "What is this fucking error";
+    }
 }

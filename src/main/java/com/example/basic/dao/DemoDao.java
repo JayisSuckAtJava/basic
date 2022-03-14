@@ -1,11 +1,9 @@
 package com.example.basic.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.basic.vo.Data;
 import com.example.basic.vo.Demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
