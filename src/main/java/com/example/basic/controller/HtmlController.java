@@ -73,5 +73,10 @@ public class HtmlController {
         return "html/req2"; 
     }
     
+    @GetMapping("/html/form")
+    public String form() {
+    	return "html/form";
+    }
+    
 
 }

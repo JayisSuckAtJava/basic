@@ -4,14 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.basic.dao.DemoDao;
-import com.example.basic.dao.SunbyulDao;
-import com.example.basic.mapper.DemoMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.basic.dao.DemoDao;
+import com.example.basic.dao.SunbyulDao;
+import com.example.basic.mapper.DemoMapper;
+import com.example.basic.mapper.PollMapper;
+import com.example.basic.mapper.SunbyulMapper;
+import com.example.basic.model.Demo;
+import com.example.basic.model.holiday_Parking;
+import com.example.basic.repository.AnyRepository;
+import com.example.basic.repository.DemoRepository;
+import com.example.basic.repository.ParkingRepository;
+import com.example.basic.vo.Any;
 
 @RestController
 public class DBController {
@@ -23,7 +31,22 @@ public class DBController {
 
     @Autowired
     DemoMapper demoMapper;
+    
+    @Autowired
+    PollMapper pollMapper;
+    
+    @Autowired
+    SunbyulMapper sunbyulMapper;
+    
+    @Autowired
+    DemoRepository demoRepository;
+    
+    @Autowired
+    AnyRepository anyRepository;
 
+    @Autowired
+    ParkingRepository parkingRepository;
+    
     @GetMapping("/jdbc/demo")
     public List<Map<String, Object>> jdbcDemo() {
         return demoDao.select();
@@ -55,13 +78,18 @@ public class DBController {
 
     @GetMapping("/jdbc/sunbyul")
     public List<Map<String, Object>> jdbcSunbyul(@RequestParam(value = "page",defaultValue = "1")int page){
-        int startRow = (page-1) * 10;
-        return sunbyulDao.sel(startRow);
+    	int startRow = (page-1) * 10;
+    	int endRow = startRow + 10;
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("startRow", startRow);
+    	map.put("endRow", endRow);
+    
+        return sunbyulMapper.select(map);
     }
 
     @GetMapping("/jdbc/sunbyul2")
     public List<Map<String, Object>> jdbcSunbyul2(){
-        return sunbyulDao.sel2();
+        return  sunbyulMapper.sejong();
     }
 
     // j unit - 
@@ -82,4 +110,36 @@ public class DBController {
         if(result==0){return "Fail";}
         return "What is this fucking error";
     }
+    
+    @GetMapping("/mybatis/poll")
+    public String mybatisPoll(@RequestParam Map<String ,Object> map) {
+    	int result =pollMapper.insert(map);
+    	if(result!=0){return "Done";}
+        if(result==0){return "Fail";}
+		return "What is this fucking error";    	
+    }
+    
+    @GetMapping("/mybatis/polls")
+    public List<Map<String, Object>> mybatisPolls() {
+    	return pollMapper.select();
+    }
+    @GetMapping("/jpa/demo")
+    public List<Demo> jpaDemo() {
+    return demoRepository.findAll();
+    }
+    
+    @GetMapping("/jpa/any")
+    public List<Any> jpaAny(){
+    	return anyRepository.findAll();
+    }
+    @GetMapping("/jpa/parking")
+    public List<holiday_Parking> jpaParking(){
+    	return parkingRepository.findAll();
+    }
+    
+    @GetMapping("/jpa/parking2")
+    public List<holiday_Parking> jpaParking2(@RequestParam(value = "sido", defaultValue = "세종%",required = false)String sido){
+    	return parkingRepository.findBySido(sido);
+    }
+
 }

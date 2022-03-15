@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.basic.mapper.SunbyulMapper">
+    <select id="select" resultType="map" parameterType="map">
+        select * from sunbyul limit #{startRow} , #{endRow}
+    </select>
+    
+    <select id="sejong" resultType="java.util.Map">
+     select * from sunbyul where sido='세종'
+    </select>
+</mapper>

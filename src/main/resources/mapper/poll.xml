@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.basic.mapper.PollMapper">
+
+	<insert id="insert" parameterType="map">
+		insert into poll (id,q,a,q2,a2) values (null,#{q},#{a},#{q2},#{a2})
+	</insert>
+
+	<select id="select" resultType="java.util.Map">
+        select * from poll
+    </select>
+</mapper>

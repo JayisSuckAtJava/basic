@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.example.basic.vo.Demo;
+import com.example.basic.vo.ItWasDemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,9 +22,9 @@ public class DemoDao {
     } // queryForList 는 return 이 List<Map>이다. (execl 과 비슷)
       // 1개의 값만 select 할때는 queryForObject 이다.
 
-      public List<Demo> select2() {
-          List<Demo> list = new ArrayList<Demo>();
-          list.add(jt.queryForObject("select user from demo where seq=1", Demo.class));
+      public List<ItWasDemo> select2() {
+          List<ItWasDemo> list = new ArrayList<ItWasDemo>();
+          list.add(jt.queryForObject("select user from demo where seq=1", ItWasDemo.class));
         return list;
     }
 

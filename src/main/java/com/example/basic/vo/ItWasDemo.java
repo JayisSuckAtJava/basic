@@ -3,7 +3,7 @@ package com.example.basic.vo;
 import lombok.Data;
 
 @Data
-public class Demo {
+public class ItWasDemo {
     private int seq;
     private String user;
 }
