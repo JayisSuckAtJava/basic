@@ -1,0 +1,7 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:each="num : ${#numbers.sequence(startPage,endPage)}">
+	<a href="" th:text="${num}" th:if="${page} == ${num}" style="text-decoration:none;"></a>
+	<a th:href="@{/test/} + ${num}" th:text="${num}" th:unless="${page == num}"></a> 
+	<!--  PathVariable 로 하는 방법. + 로 붙이면 다음으로 붙임 -->
+</th:block>

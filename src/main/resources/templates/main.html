@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p th:if="${session.user} != null"th:text="${session.user.userName} + '님 반갑습니다.'"></p>
+	<p th:unless="${session.user} != null"> 로그인되어 있지 않습니다. </p>
+	<input type="button" onclick="location.href='/logout'" value="로그아웃">
+	<input type="button" onclick="location.href='/login'" value="로그인">
+	<input type="button" onclick="location.href='/join'" value="가입">
+
+</body>
+</html>

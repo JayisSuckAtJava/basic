@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/member/login" method="post">
+		ID : <input type="text" name="userId"><br>
+		PASSWORD : <input type="password" name="userPassword"><br>
+		<input type="submit">
+</form>		
+
+<!-- Axios 를 통한 ajax -->
+
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+				const userId= document.querySelector("[name=userId]");
+				const userPassword= document.querySelector("[name=userPassword]");
+				
+				userId.addEventListener("blur",()=>{
+					if(userId.value==""){
+						alert("아이디좀");
+					};
+				});
+				userPassword.addEventListener("blur",()=>{
+					if(userPassword.value==""){
+						alert("비번좀");
+					};
+				});
+				
+			const btn = document.querySelector("[type=submit]");
+			btn.addEventListener ("click",(e)=>{
+				e.preventDefault();
+				
+				
+				const formData = new FormData();
+				formData.append("userId",userId.value);
+				formData.append("userPassword",userPassword.value);
+				const res = axios({
+					url: "login",	
+					method: "post",
+					data: formData
+				});
+				res.then((data) => {
+						alert(data.data.result);
+					if(data.data.result=='done'){
+						location.href="../member";
+					}else{
+						alert("뭐함?");
+						location.reload();
+					}
+				});
+			});
+		</script>
+		
+		
+</body>
+</html>

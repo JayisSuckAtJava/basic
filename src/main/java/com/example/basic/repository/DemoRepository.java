@@ -2,6 +2,8 @@ package com.example.basic.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -23,7 +25,8 @@ public interface DemoRepository extends JpaRepository<Demo, Long>{
 	// containing 을 통한 like 키워드는 계속 붙일수 있음, 연산도 앞에서 부터 시작함.
 	List<Demo> findByUserContaining(String user);
 	
-	
+	//page 로 리턴하면 여러가지 장점이 있다?
+	Page<Demo> findByOrderByUserDesc(Pageable page);
 	
 	
 	

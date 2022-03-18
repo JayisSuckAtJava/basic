@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<th:block th:each="pageNumber : ${#numbers.sequence(1, 10)}">
+		<span th:if="${page} == ${pageNumber}" th:text="${pageNumber}" style="font-weight:bold"></span>
+		<a th:unless="${page} == ${pageNumber}" th:href="@{/linkUrl(page=${pageNumber},add=1)}"	th:text="${pageNumber}"></a>
+		<!--  get 방식이다. href 는 /linkUrl?page=pageNumber 가 된다. () 로 가둬두면 ? 가 됨 앞에 -->
+		<!--  add 처럼 () 안에 , 로 추가적인 데이터를 보낼수 있음. -->
+	</th:block>
+
+		<!--  <a th:href="@{/linkUrl(page=${pageNumber})}" th:text="${pageNumber}"></a>   -->
+</body>
+</html>

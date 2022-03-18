@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<th:block th:if="${session.member}!=null">
+	<span th:text="${session.member.userId} + '님 안녕하세요.'"> </span>
+</th:block>
+
+<th:block th:unless="${session.member}!=null">
+		<p>가입 해주세요</p>
+		<input type="button" onclick="location.href='member/signup'" value="가입하기">
+		<p>로그인 해주세요</p>
+		<input type="button" onclick="location.href='member/login'" value="로그인하기">
+</th:block>
+
+</body>
+</html>

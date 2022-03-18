@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/member/signup" method="post">
+		ID : <input type="text" name="userId"><br>
+		PASSWORD : <input type="password" name="userPassword"><br>
+		NAME : <input type="text" name="name">
+		<input type="submit">
+</form>		
+<!-- Axios 를 통한 ajax -->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+			const btn = document.querySelector("[type=submit]");
+			btn.addEventListener ("click",(e)=>{
+				e.preventDefault();
+				
+				const userId= document.querySelector("[name=userId]").value;
+				const userPassword= document.querySelector("[name=userPassword]").value;
+				const name= document.querySelector("[name=name]").value;
+				
+				const formData = new FormData();
+				formData.append("userId",userId);
+				formData.append("userPassword",userPassword);
+				formData.append("name",name);
+				const res = axios({
+					url: "signup",
+					method: "post",
+					data: formData
+				});
+				res.then((data) => {
+					alert("가입 완료!");
+				});
+			});
+		</script>
+
+</body>
+</html>

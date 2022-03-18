@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table border="1">
+		<tr>
+			<td>아이디</td>
+			<td>이름</td>
+			<td>나이</td>		<!-- userList 라는 List<Map>을 받고 - 해당 Map을 user라는 함수로 Map<String,Object> -->
+		</tr>		<!-- 향상된 for문 처럼 List 를 user로 반환하여 반복 실행. -->
+		<tr th:each="user : ${userList}">
+			<td th:text="${user.userId}"></td>
+			<td th:text="${user.userName}"></td>
+			<td th:text="${user.userAge}"></td>
+		</tr>
+	</table>
+	<hr>
+	<th:block th:each="pageNumber : ${#numbers.sequence(1, 10)}">
+		<span th:text="${pageNumber}"></span>
+	</th:block>
+
+
+</body>
+</html>
