@@ -13,7 +13,10 @@ public class FilterConfig {
 	@Bean
 	public FilterRegistrationBean<Filter> getFilterRegistrationBean() {
 		FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>(new IPCheckFilter());
+		// .addUrlPatterns 로 url 추가. 모든거는 /*
 		bean.addUrlPatterns("/visitor");
+		bean.addUrlPatterns("/main","/login");
+//		bean.addUrlPatterns("/*");
 		return bean;
 	}
 }
