@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>네이버 api - 이름 변경</title>
+</head>
+<body>
+
+<div>
+	<input type="text">
+	<button onclick="">실행</button>
+
+	<div id="display">
+		
+	</div>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+	
+		const btn=document.querySelector("button");
+		btn.addEventListener("click",(event)=>{
+				
+			const query = document.querySelector("input").value;
+			const res = axios({
+				url : '/getRoma',
+				method : 'get',
+				params : {
+					'query' : query
+				}
+			});
+			res.then((result)=> {
+				console.log(result.data);
+				const items = result.data.aResult[0].aItems
+				console.log(items);
+				console.log(items[0])
+			
+				const display=document.querySelector("#display");
+				let code;
+				code = '<table border="1">';
+				code += '<tr>';
+				code += '<th>이름</th>';
+				code += '<th>빈도 수</th>';
+				code += '</tr>';
+				for(let i of items){
+					code += '<tr>';
+					
+					code += `<td>${i.name}</td>`;
+					code += `<td>${i.score}</td>`;
+					
+					code += '</tr>';
+				}
+				
+				code += '</table>';
+				display.innerHTML = code;
+			});
+		});
+			</script>
+</div>
+</body>
+</html>

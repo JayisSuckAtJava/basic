@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Aspect
-@Component
+//@Component
 public class JpaLogAspect {
 
 	@AfterReturning(value = "execution (* com.example.basic.controller.DBController.jpa*(..))",returning = "data")

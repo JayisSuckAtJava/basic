@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j  // log 를 사용하기 위한 어노테이션 생성-lombok 내장
 @Aspect// Aop 를 사용하는 Aspect 생성.
-@Component // Bean 으로 등록하기 위한 어노테이션
+//@Component // Bean 으로 등록하기 위한 어노테이션
 public class ControllerAspect { //pcom.example.basic.controller;
 	@Before(value = "execution (* com.example.basic.controller.*.*(..))")
 	public void onBeforeHandler(JoinPoint joinPoint) {

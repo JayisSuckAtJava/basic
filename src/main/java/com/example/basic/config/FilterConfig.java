@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.basic.filter.IPCheckFilter;
 
-@Configuration
+//@Configuration
 public class FilterConfig {
 	@Bean
 	public FilterRegistrationBean<Filter> getFilterRegistrationBean() {

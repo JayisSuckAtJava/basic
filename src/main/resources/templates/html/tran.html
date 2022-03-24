@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>카카오 api - 번역</title>
+</head>
+<body>
+
+<div>
+	<input type="text">
+	<button onclick="">실행</button>
+
+	<div id="display">
+		
+	</div>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+		
+		
+		const btn=document.querySelector("button");
+		btn.addEventListener("click",(event)=>{
+				
+			const query = document.querySelector("input").value;
+			const res = axios({
+				url : '/getTran',
+				method : 'get',
+				params : {
+					'query' : query
+				}
+			});
+			res.then((result)=> {
+				console.log(result.data);
+				let code;
+				const transed = result.data.translated_text[0][0];
+				code = transed;
+				document.querySelector('#display').innerHTML = code;
+			});
+		});
+		</script>
+
+
+</div>
+</body>
+</html>

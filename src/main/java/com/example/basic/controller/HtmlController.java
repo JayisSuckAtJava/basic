@@ -78,5 +78,25 @@ public class HtmlController {
     	return "html/form";
     }
     
+    @GetMapping("/html/kakao")
+    public String htmlKakao() {
+    	
+    	return "html/kakao";
+    }
+    
+    @GetMapping("/html/naver")
+    public String htmlNaver() {
+    	
+    	return "html/naver";
+    }
+    @GetMapping("/html/roma")
+    public String htmlRoma() {
+    	return "html/roma";
+    }
+    
+    @GetMapping("/html/tran")
+    public String htmlTran() {
+    	return "html/tran";
+    }
 
 }

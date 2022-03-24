@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>카카오 api - Location</title>
+</head>
+<body>
+
+<div>
+	<input type="text">
+	<button onclick="">실행</button>
+	
+	<div id="display">
+		
+	</div>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+		
+		
+		const btn=document.querySelector("button");
+		btn.addEventListener("click",(event)=>{
+				
+			const address = document.querySelector("input").value;
+			const res = axios({
+				url : '/getKakao',
+				method : 'get',
+				params : {
+					'address' : address
+				}
+			});
+			res.then((result) =>{
+				console.log(result.data);
+				
+				const documents = result.data.documents;
+				const meta = result.data.meta;
+				
+
+				let code='<select>';
+				
+				for(let document of documents){
+						const address_name =document.address_name;
+						const x =document.x;
+						const y =document.y;
+						
+						code +=`<option>${address_name} / ${y} / ${x}</option>`;
+				}
+								
+				code += '</select>';
+				document.querySelector('#display').innerHTML = code;
+			});
+		});
+		</script>
+
+
+</div>	
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>네이버 api - Papago 번역</title>
+</head>
+<body>
+
+<div>
+	<input type="text">
+	<button onclick="">실행</button>
+
+	<div id="display">
+		
+	</div>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+		
+		
+		const btn=document.querySelector("button");
+		btn.addEventListener("click",(event)=>{
+				
+			const text = document.querySelector("input").value;
+			const res = axios({
+				url : '/getNaver',
+				method : 'get',
+				params : {
+					'text' : text
+				}
+			});
+			res.then((result)=> {
+				console.log(result.data);
+				
+				const message = result.data.message;
+				const res = message.result;
+					const translatedText = res.translatedText;
+					const src = res.srcLangType;
+					const tar = res.tarLangType;
+				
+				let code='<span>';
+					code+=`<p>입력 받은 언어 = ${src}</p>`;
+					code+=`<p>번역 된 언어 = ${tar}</p>`;
+					code+=`<span>${translatedText}</span>`;
+				code +='</span>';
+				document.querySelector('#display').innerHTML = code;
+			});
+		});
+		</script>
+
+
+</div>
+</body>
+</html>
